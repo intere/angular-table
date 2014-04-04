@@ -1,0 +1,72 @@
+
+<angular-table model="listOfNumbers" default-sort-column="id" class="demoTable" style="padding-bottom: 1px;">
+  <header-row>
+    <header-column sortable="true" sort-field-name="id" class="demoHeaderColumn">
+      <div class="demoHeaderText">Id</div>
+      <sort-arrow-ascending></sort-arrow-ascending>
+      <sort-arrow-descending></sort-arrow-descending>
+    </header-column>
+    <header-column sortable="false" sort-field-name="name" class="demoHeaderColumn">Name</header-column>
+    <header-column sortable="true" sort-field-name="street" class="demoHeaderColumn">
+      <div class="demoHeaderText">Street</div>
+      <sort-arrow-ascending></sort-arrow-ascending>
+      <sort-arrow-descending></sort-arrow-descending>
+    </header-column>
+  </header-row>
+
+  <row on-selected="handleRowSelection(row)" selected-color="#87cefa" even-color="#ffffff" odd-color="#eeeeee">
+    <column>{{ row.id }}</column>
+    <column>{{ row.name }}</column>
+    <column>{{ row.street }}</input></column>
+  </row>
+</angular-table>
+
+<div class="demoDetailPane">
+  <div class="demoDetailInnerPane">
+    <p>Id: {{ selectedRow.id }}</p>
+    <p>Name: <input type="text" ng-model="selectedRow.name"></input></p>
+    <p>Street: <input type="text" ng-model="selectedRow.street"></input></p>
+
+    <p><button ng-click="addRows(1)">Add Row To End</button></p>
+    <p><button ng-click="listOfNumbers.pop()">Remove Last Row</button></p>
+    <p><button ng-click="listOfNumbers = []">Remove All Rows</button></p>
+    <p><button ng-click="addRows(50)">Add 50 Rows</button></p>
+  </div>
+</div>
+
+<!-- <div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Home</a></li>
+    <li><a ng-href="#">About</a></li>
+    <li><a ng-href="#">Contact</a></li>
+  </ul>
+  <h3 class="text-muted">angular table</h3>
+</div>
+
+<div class="jumbotron">
+  <h1>'Allo, 'Allo!</h1>
+  <p class="lead">
+    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
+    Always a pleasure scaffolding your apps.
+  </p>
+  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
+</div>
+
+<div class="row marketing">
+  <h4>HTML5 Boilerplate</h4>
+  <p>
+    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+  </p>
+
+  <h4>Angular</h4>
+  <p>
+    AngularJS is a toolset for building the framework most suited to your application development.
+  </p>
+
+  <h4>Karma</h4>
+  <p>Spectacular Test Runner for JavaScript.</p>
+</div>
+
+<div class="footer">
+  <p>♥ from the Yeoman team</p>
+</div> -->
