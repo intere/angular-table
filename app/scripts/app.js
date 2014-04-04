@@ -1,14 +1,11 @@
 'use strict';
 
 angular.module('angularTableApp', [
-  'ngRoute'
+  'ngRoute', 'angular-table'
 ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
+      .when('/', {templateUrl: 'views/main.html'})
       .otherwise({
         redirectTo: '/'
       });
