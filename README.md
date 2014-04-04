@@ -8,9 +8,9 @@ No javascript code required; the api is a 100% declarative dsl.
 Quick Start
 -----------
 
-* include [angular.js](https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js) (version 1.2.6), 
-[angular-table.js](https://raw.github.com/davidjnelson/angular-table/master/src/main/webapp/js/lib/angular-table.js),
-and [angular-table.css](https://raw.github.com/davidjnelson/angular-table/master/src/main/webapp/css/lib/angular-table.css).
+* include [angular.js](https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js) (version 1.2.6),
+[angular-table.js](https://bitbucket.org/sportslabs/angular-table/raw/a6be9209faa3e274a00d7b2f6d3db093d4fb37a2/app/scripts/directives/angular-table.js),
+and [angular-table.css](https://bitbucket.org/sportslabs/angular-table/raw/a6be9209faa3e274a00d7b2f6d3db093d4fb37a2/app/styles/angular-table.css).
 * Put this in your template:
 
 ```html
