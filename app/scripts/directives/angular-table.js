@@ -8,6 +8,8 @@ angular.module('angular-table', [])
             // see bug: https://github.com/angular/angular.js/issues/1459
             compile: function (tElement, tAttrs) {
                 SortState.sortExpression = tAttrs.defaultSortColumn;
+                SortState.setSortDirection(tAttrs.defaultSortDirection);
+
                 TemplateStaticState.instrumentationEnabled = tAttrs.instrumentationEnabled;
                 TemplateStaticState.modelName = tAttrs.model;
 
@@ -389,6 +391,15 @@ angular.module('angular-table', [])
 
         // store the sort expression
         self.sortExpression = '';
+        self.setSortDirection = function(direction) {
+          if(typeof(direction)!=='undefined' && typeof(self.sortExpression)!=='undefined') {
+            if(direction.toLowerCase()==='desc') {
+              self.sortDirectionToColumnMap[self.sortExpression] = true;
+            } else {
+              self.sortDirectionToColumnMap[self.sortExpression] = false;
+            }
+          }
+        };
 
         // store the columns sort direction mapping
         self.sortDirectionToColumnMap = {};
