@@ -39,8 +39,14 @@ angular.module('angular-table', [])
             controller: ['$scope', '$parse', function($scope, $parse) {
                 $scope.SortState = SortState;
 
-                $scope.setSortExpression = function(columnName) {
+                $scope.setSortExpression = function(columnName, e) {
                     SortState.sortExpression = columnName;
+
+                    //set sort selected column
+                    if(typeof e.currentTarget.classList[0] !== 'undefined'){
+                      angular.element('.' + e.currentTarget.classList[0]).removeClass('selected');
+                      angular.element(e.currentTarget).addClass('selected');
+                    }
 
                     // track sort directions by sorted column for a better ux
                     SortState.sortDirectionToColumnMap[SortState.sortExpression] = !SortState.sortDirectionToColumnMap[SortState.sortExpression];
@@ -278,7 +284,7 @@ angular.module('angular-table', [])
 
                         // add the sort click handler
                         angular.element(childColumn).attr('ng-click', 'setSortExpression(\'' +
-                            angular.element(childColumn).attr('sort-field-name') + '\')');
+                            angular.element(childColumn).attr('sort-field-name') + '\'), $event');
 
                         // remove the sort field name attribute from the dsl
                         angular.element(childColumn).removeAttr('sort-field-name');
