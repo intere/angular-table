@@ -284,7 +284,7 @@ angular.module('angular-table', [])
 
                         // add the sort click handler
                         angular.element(childColumn).attr('ng-click', 'setSortExpression(\'' +
-                            angular.element(childColumn).attr('sort-field-name') + '\', $event)');
+                            angular.element(childColumn).attr('sort-field-name') + '\',$event)');
 
                         // remove the sort field name attribute from the dsl
                         angular.element(childColumn).removeAttr('sort-field-name');
