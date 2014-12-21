@@ -12,6 +12,7 @@ angular.module('angular-table', [])
 
                 TemplateStaticState.instrumentationEnabled = tAttrs.instrumentationEnabled;
                 TemplateStaticState.modelName = tAttrs.model;
+                TemplateStaticState.trackBy = tAttrs.trackBy
 
                 // find whatever classes were passed into the angular-table, and merge them with the built in classes for the container div
                 tElement.addClass('angularTableContainer');
@@ -321,8 +322,14 @@ angular.module('angular-table', [])
                 }
 
                 // add the ng-repeat and row selection click handler to each row
+                var trackBy='';
+                if(typeof(TemplateStaticState.trackBy) !== 'undefined') {
+                  trackBy = ' track by row.' + TemplateStaticState.trackBy;
+                }
                 rowTemplate = rowTemplate.replace('<tr',
-                    '<tr ng-repeat="row in ' + TemplateStaticState.modelName + ' | orderBy:SortState.sortExpression:SortState.sortDirectionToColumnMap[SortState.sortExpression] | filter:filterQueryModel" ' +
+                    '<tr ng-repeat="row in ' + TemplateStaticState.modelName +
+                    ' | orderBy:SortState.sortExpression:SortState.sortDirectionToColumnMap[SortState.sortExpression] | filter:filterQueryModel '
+                    + trackBy + '" ' +
                         selectedBackgroundColor + ngClick);
             }
 

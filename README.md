@@ -16,7 +16,7 @@ and [angular-table.css](https://bitbucket.org/sportslabs/angular-table/raw/a6be9
 ```html
 
 <angular-table model="[ { id: 1, name: 'Bob', street: '1 street ave' } ]"
-    filter-query-model="filterQuery" default-sort-column="id">
+    filter-query-model="filterQuery" default-sort-column="id" track-by="id">
     <header-row>
         <header-column sortable="true" sort-field-name="id">
             <div style="display: inline-block;">Id</div>
@@ -43,7 +43,7 @@ and [angular-table.css](https://bitbucket.org/sportslabs/angular-table/raw/a6be9
 
 ```
 
-# [Angular Table Live Demo](http://angulartable.com/demo/index.html)
+# (Old) [Angular Table Live Demo](http://angulartable.com/demo/index.html)
 
 Philosophy:
 -----------
@@ -56,6 +56,7 @@ Features:
 ---------
 
 * 100% declarative dsl - no javascript required
+* uses the ``ngRepeat`` ``track by`` See [Here](https://docs.angularjs.org/api/ng/directive/ngRepeat)
 * fixed headers
 * sortable headers
 * pass a model on the parent scope to filter data by
@@ -129,10 +130,15 @@ fantastic pull request :-)
 
 Running a local demo:
 ---------------------
-* git clone https://github.com/davidjnelson/angular-table.git
-* cd angular-table
-* mvn jetty:run
-* visit http://localhost:8090 in your browser
+(requires node, npm grunt, bower)
+```bash
+git clone https://github.com/davidjnelson/angular-table.git
+cd angular-table
+npm install
+bower install
+grunt serve
+```
+* visit http://localhost:9000 in your browser
 
 Why Not Use ng-grid or smart table?
 -----------------------------------
