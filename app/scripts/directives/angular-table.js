@@ -40,11 +40,27 @@ angular.module('angular-table', [])
             controller: ['$scope', '$parse', function($scope, $parse) {
                 $scope.SortState = SortState;
 
-                $scope.setSortExpression = function(columnName) {
+                $scope.setSortExpression = function(columnName, e) {
                     SortState.sortExpression = columnName;
 
+                    if(angular.element(e.currentTarget).hasClass('selected')){
+                      SortState.sortDirectionToColumnMap[SortState.sortExpression] = !SortState.sortDirectionToColumnMap[SortState.sortExpression];
+                    } else {
+                      SortState.sortDirectionToColumnMap[SortState.sortExpression] = false;
+                    }
+
+                    //set sort selected column
+                    if(typeof e.currentTarget.classList !== 'undefined' && typeof e.currentTarget.classList[0] !== 'undefined'){
+                      angular.element('.' + e.currentTarget.classList[0]).removeClass('selected');
+                      angular.element(e.currentTarget).addClass('selected');
+                    }
+                    if(typeof e.currentTarget.classList === 'undefined'){
+                      angular.element('.angularTableHeaderRow td.selected').removeClass('selected');
+                      angular.element(e.currentTarget).addClass('selected');
+                    }
+
                     // track sort directions by sorted column for a better ux
-                    SortState.sortDirectionToColumnMap[SortState.sortExpression] = !SortState.sortDirectionToColumnMap[SortState.sortExpression];
+
                 };
             }],
             // manually transclude and replace the template to work around not being able to have a template with td or tr as a root element
@@ -279,7 +295,7 @@ angular.module('angular-table', [])
 
                         // add the sort click handler
                         angular.element(childColumn).attr('ng-click', 'setSortExpression(\'' +
-                            angular.element(childColumn).attr('sort-field-name') + '\')');
+                            angular.element(childColumn).attr('sort-field-name') + '\', $event)');
 
                         // remove the sort field name attribute from the dsl
                         angular.element(childColumn).removeAttr('sort-field-name');
